@@ -8,35 +8,36 @@
 </head>
 <body>
 
-    <button onclick="getLocation()">Obtener unicacion</button>
+    <button onclick="getLocation">Obtener ubicacion.</button>
 
     <div id="mapa">
-        <img id="imagenMapa" src="" alt="Imagen de mapa">
+
+        <img id="imagenmapa" src="" alt="Imagen de mapa">
     </div>
+
     <p id="alerta"></p>
     <script>
-        var mapa = document.getElementById("mapa");
-    
-        
+        var mapa = document.getElementById("mapa")
+
         function getLocation(){
-    
+
             if(navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(muestraPosicion);
-            }
-            else {
-                var alerta = document.getElementById("alerta")
+
+                navigator.geolocation.getCurrentPosition(showLocation);
+            }else{
+                var alerta = document.getElementById("alerta"
+                )
                 alerta.innerHTML = "El navegador no dispone de geolocalizacion"
             }
         }
-    
-        function muestraPosicion(posicion) {
-            var coordenadas = posicion.coords.latitude + "," + posicion.coords.logitude;
 
-            var imagenMapa = document.getElementById("imagenMapa");
+        function showLocation(posicion){
 
-            console.log( "https://maps.googleapis.com/maps/api/staticmap?center=" + coordenadas + "&zoom=12&size=750x750&key=AIzaSyCMrQgga-C5zCuZLTVk2MPVzX7naqKZXZU"):
+            var coordenadas = posicion.coords.latitude + ", " + posicion.coords.longitude
 
-            imagenMapa.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + coordenadas + "&zoom=12&size=750x750&key=AIzaSyCMrQgga-C5zCuZLTVk2MPVzX7naqKZXZU"
+            var imagenmapa = document.getElementById("imagenmapa")
+
+            imagenmapa.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + coordenadas + "&zoom=18&size=800x800&key=AIzaSyCMrQgga-C5zCuZLTVk2MPVzX7naqKZXZU"
         }
 
 
