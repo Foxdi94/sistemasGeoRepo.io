@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <button onclick="getLocation">Obtener ubicacion.</button>
+    <button onclick="obtieneUbicacion">Obtener ubicacion.</button>
 
     <div id="mapa">
 
@@ -19,11 +19,11 @@
     <script>
         var mapa = document.getElementById("mapa")
 
-        function getLocation(){
+        function obtieneUbicacion(){
 
             if(navigator.geolocation){
 
-                navigator.geolocation.getCurrentPosition(showLocation);
+                navigator.geolocation.getCurrentPosition(muestraPosicion);
             }else{
                 var alerta = document.getElementById("alerta"
                 )
@@ -31,7 +31,7 @@
             }
         }
 
-        function showLocation(posicion){
+        function muestraPosicion(posicion){
 
             var coordenadas = posicion.coords.latitude + ", " + posicion.coords.longitude
 
@@ -40,10 +40,6 @@
             imagenmapa.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + coordenadas + "&zoom=18&size=800x800&key=AIzaSyCMrQgga-C5zCuZLTVk2MPVzX7naqKZXZU"
         }
 
-
-    
     </script>
-    
 </body>
-
 </html>
