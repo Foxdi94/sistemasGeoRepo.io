@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 1 fetch</title>
+</head>
+<body>
+
+
+    <div class="container" id="paises">
+        <div class="row">
+            <div class="col-12"></div>
+
+        </div>
+    </div>
+    
+    <script>
+        
+        var paises = document.getElementById("paises");
+        fetch("datos.json")
+        .then(function(response) {
+            console.log(response);
+            response.json().then( datos=> {
+                let contador = 1;
+                datos.forEach(registro =>{
+                    let renglon = document.createElement("div");
+                    renglon.className = "row border bg-light m-2";
+                    paises.appendChild(renglon);
+                    let colunma = document.createElement("div");
+                    colunma.className = "col-12";
+                    renglon.appendChild(colunma);
+                    let nombre = document.createElement("div");
+                    nombre.textContent = contador + ") " + registro.CountryName
+                    colunma.appendChild(nombre);
+                    contador++;
+                })
+
+            })
+        })
+
+    </script>
+
+
+</body>
+</html>
