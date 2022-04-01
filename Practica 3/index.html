@@ -9,12 +9,21 @@
 </head>
 <body>
 
-    <p>Haz click en el boton para obetener las coordenadas</p>
+    <div class="container">
 
-    <button onclick="getLocation()">Obtener coordeneadas</button>
-
-    <p id="mapa"></p>
-    
+            <div class="row">
+                <p class="text_title">Haz click en el boton para obetener las coordenadas</p>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <button class="button-33" role="button" onclick="getLocation()">Obtener coordeneadas</button>
+            </div>
+            <br>
+            <br>
+        
+            <p id="mapa"></p>
+    </div>
 </body>
 
 <script>
@@ -29,7 +38,7 @@
 
     function muestraPosicion(posicion) {
         console.log(posicion)
-        mapa.innerHTML = "Latitud" + posicion.coords.latitude + "<br>" + ", Longitud" + posicion.coords.longitude;
+        mapa.innerHTML = "Latitud" + posicion.coords.latitude + "<br>" + "Longitud" + posicion.coords.longitude;
     }
 
 </script>
