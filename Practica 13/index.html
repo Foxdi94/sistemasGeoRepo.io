@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 13</title>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+
+    function iniciaMapa() {
+        var coordenadas = {lat:21.152639, lng:-101.711598}
+
+        var propiedades = {
+            center: coordenadas,
+            zoom: 12
+        };
+
+        var map = new google.maps.Map(document.getElementById('map'), propiedades)
+        muestraLugares();
+    }
+
+    function muestraLugares() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition( position => {
+                var coordenadas = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                var service = new google.maps.places.PlacesService(map);
+
+                service.nearbySearch({location: coordenadas, radius: 1000, type: ['ata']}, function)
+            })
+        }
+    }
+
+    function crearMarcadores(places) {
+
+        var bounds = new
+
+        console.log(places);
+
+
+        for( var i=0, place; place = places[i]; i++) {
+
+            var marker = new google.maps.Maker({
+
+                map: map,
+                title: "titulo",
+                position: place.geometry.location
+
+            });
+
+            google.maps.event.addListener(marker, 'mousover', function() {
+                var infoWindow = new google.maps.InfoWindow({
+                    content: this.title,
+                    position: this.position
+                });
+
+                infoWindow.open(map);
+
+                setTimeout( function() {infoWindow.close()},3000);
+
+                bounds.extend(place.geometry.location);
+            })
+        }
+    }
+
+    </script>
+
+</body>
+</html>
